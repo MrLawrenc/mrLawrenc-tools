@@ -17,10 +17,10 @@ import org.springframework.beans.factory.support.RootBeanDefinition;
 import org.springframework.cglib.proxy.MethodProxy;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.annotation.AnnotationAwareOrderComparator;
-import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -35,7 +35,6 @@ import static java.util.stream.Collectors.toList;
  * <p>
  * first和last filter是一定会被执行的
  */
-@Component
 @Slf4j
 public class FilterChain implements InitializingBean {
 
@@ -137,13 +136,14 @@ public class FilterChain implements InitializingBean {
         beanFilters = new ArrayList<>(context.getBeansOfType(Filter.class).values());
 
         if (!StringUtils.isEmpty(basePkg)) {
-            System.out.println("扫描包:" + basePkg);
+            log.info("开始扫描自定义包:{}下的Filter实现类", basePkg);
             Reflections reflections = new Reflections(basePkg);
             Set<Class<? extends Filter>> subClz = reflections.getSubTypesOf(Filter.class);
 
             List<? extends Class<? extends Filter>> sourceClz = beanFilters.stream().map(Filter::getClass).collect(toList());
 
-            List<Class<? extends Filter>> newBeanFilter = subClz.stream().filter(c -> !sourceClz.contains(c)).peek(result -> {
+            List<Class<? extends Filter>> newBeanFilter = subClz.stream().filter(c -> !sourceClz.contains(c)
+                    && !Modifier.isAbstract(c.getModifiers())).peek(result -> {
                 RootBeanDefinition definition = new RootBeanDefinition();
                 definition.setBeanClass(result);
                 RegisterConfig.registry.registerBeanDefinition(result.getSimpleName().toLowerCase(), definition);
