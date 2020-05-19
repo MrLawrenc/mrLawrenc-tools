@@ -1,10 +1,9 @@
-package com.github.mrLawrenc.filter.impl;
+package com.github.mrLawrenc.filter.service;
 
 
-import com.github.mrLawrenc.config.Config;
-import com.github.mrLawrenc.filter.FilterChain;
-import com.github.mrLawrenc.filter.Request;
-import com.github.mrLawrenc.filter.Response;
+import com.github.mrLawrenc.filter.config.Config;
+import com.github.mrLawrenc.filter.entity.Request;
+import com.github.mrLawrenc.filter.entity.Response;
 import com.github.mrLawrenc.filter.standard.InnerFilter;
 
 /**

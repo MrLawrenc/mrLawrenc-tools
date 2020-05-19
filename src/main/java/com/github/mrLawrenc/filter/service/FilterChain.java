@@ -1,10 +1,10 @@
-package com.github.mrLawrenc.filter;
+package com.github.mrLawrenc.filter.service;
 
 import com.alibaba.fastjson.JSON;
-import com.github.mrLawrenc.config.Config;
-import com.github.mrLawrenc.config.RegisterConfig;
-import com.github.mrLawrenc.filter.impl.FirstFilter;
-import com.github.mrLawrenc.filter.impl.LastFilter;
+import com.github.mrLawrenc.filter.config.Config;
+import com.github.mrLawrenc.filter.config.RegisterConfig;
+import com.github.mrLawrenc.filter.entity.Request;
+import com.github.mrLawrenc.filter.entity.Response;
 import com.github.mrLawrenc.filter.standard.Filter;
 import com.github.mrLawrenc.filter.standard.InboundFilter;
 import com.github.mrLawrenc.filter.standard.OutboundFilter;

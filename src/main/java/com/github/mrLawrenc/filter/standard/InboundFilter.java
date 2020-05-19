@@ -1,9 +1,9 @@
 package com.github.mrLawrenc.filter.standard;
 
 
-import com.github.mrLawrenc.filter.FilterChain;
-import com.github.mrLawrenc.filter.Request;
-import com.github.mrLawrenc.filter.Response;
+import com.github.mrLawrenc.filter.service.FilterChain;
+import com.github.mrLawrenc.filter.entity.Request;
+import com.github.mrLawrenc.filter.entity.Response;
 
 /**
  * @author : hz20035009-逍遥

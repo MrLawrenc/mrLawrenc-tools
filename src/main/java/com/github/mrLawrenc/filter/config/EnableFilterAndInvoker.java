@@ -1,4 +1,4 @@
-package com.github.mrLawrenc.config;
+package com.github.mrLawrenc.filter.config;
 
 
 import org.springframework.context.annotation.ComponentScan;

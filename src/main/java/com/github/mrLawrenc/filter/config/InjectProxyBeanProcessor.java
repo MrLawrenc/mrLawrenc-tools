@@ -1,7 +1,7 @@
-package com.github.mrLawrenc.config;
+package com.github.mrLawrenc.filter.config;
 
 
-import com.github.mrLawrenc.filter.FilterChain;
+import com.github.mrLawrenc.filter.service.FilterChain;
 import com.github.mrLawrenc.filter.standard.Invoker;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;

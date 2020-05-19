@@ -1,4 +1,4 @@
-package com.github.mrLawrenc.filter;
+package com.github.mrLawrenc.filter.entity;
 
 import lombok.Data;
 

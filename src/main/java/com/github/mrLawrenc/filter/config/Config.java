@@ -1,4 +1,4 @@
-package com.github.mrLawrenc.config;
+package com.github.mrLawrenc.filter.config;
 
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;

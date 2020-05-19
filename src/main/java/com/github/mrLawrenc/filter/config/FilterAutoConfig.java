@@ -1,8 +1,8 @@
-package com.github.mrLawrenc.config;
+package com.github.mrLawrenc.filter.config;
 
-import com.github.mrLawrenc.filter.FilterChain;
-import com.github.mrLawrenc.filter.impl.FirstFilter;
-import com.github.mrLawrenc.filter.impl.LastFilter;
+import com.github.mrLawrenc.filter.service.FilterChain;
+import com.github.mrLawrenc.filter.service.FirstFilter;
+import com.github.mrLawrenc.filter.service.LastFilter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
