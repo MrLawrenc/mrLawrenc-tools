@@ -4,16 +4,52 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <!--deploy成功之后 访问https://oss.sonatype.org/#stagingRepositories 可以查看已上传的项目-->
     <groupId>com.github.mrLawrenc</groupId>
     <artifactId>mrLawrenc-tool-spring-boot-starter</artifactId>
     <version>1.0.0-RELEASE</version>
 
+    <url>https://github.com/mrlawrenc/OSSRH-57750</url>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.3.0.RELEASE</version>
     </parent>
+
+    <properties>
+        <java.version>11</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <!-- <maven.deploy.skip>true</maven.deploy.skip>-->
+    </properties>
+
+
+    <licenses>
+        <!-- Apache许可证 -->
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+
+    </licenses>
+    <!-- SCM信息 -> git在github上托管 -->
+    <scm>
+        <connection>scm:git:git://github.com/MrLawrenc/OSSRH-57750.git</connection>
+        <developerConnection>scm:git:ssh://github.com/MrLawrenc/OSSRH-57750.git</developerConnection>
+        <url>https://github.com/MrLawrenc/OSSRH-57750/tree/master</url>
+    </scm>
+    <!-- 开发者信息 -->
+    <developers>
+        <developer>
+            <name>liumingyao</name>
+            <email>mrliu943903861@163.com</email>
+            <url>https://github.com/mrlawrenc</url>
+        </developer>
+    </developers>
+
 
     <dependencies>
         <dependency>
@@ -39,16 +75,82 @@
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
     </dependencies>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>11</source>
-                    <target>11</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+
+    <!-- 使用个人资料：由于生成javadoc和源jar以及使用GPG签署组件是一个相当耗时的过程，因此这些执行通常与正常的构建配置隔离并移动到配置文件中。然后，在通过激活配置文件执行部署时，将使用此配置文件。 -->
+    <profiles>
+        <profile>
+            <id>ossrh</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <!-- 要生成Javadoc和Source jar文件，您必须配置javadoc和源Maven插件 -->
+                    <!-- <plugin>
+                         <groupId>org.apache.maven.plugins</groupId>
+                         <artifactId>maven-source-plugin</artifactId>
+                         <version>2.2.1</version>
+                         <executions>
+                             <execution>
+                                 <id>attach-sources</id>
+                                 <goals>
+                                     <goal>jar-no-fork</goal>
+                                 </goals>
+                             </execution>
+                         </executions>
+                     </plugin>-->
+                     <plugin>
+                         <groupId>org.apache.maven.plugins</groupId>
+                         <artifactId>maven-javadoc-plugin</artifactId>
+                         <version>2.9.1</version>
+                         <executions>
+                             <execution>
+                                 <id>attach-javadocs</id>
+                                 <goals>
+                                     <goal>jar</goal>
+                                 </goals>
+                             </execution>
+                         </executions>
+                     </plugin>
+                    <!--必须配置GPG插件用于使用以下配置对组件进行签名-->
+<!--                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.5</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>-->
+
+
+                    <!--<plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <configuration>
+                            <source>11</source>
+                            <target>11</target>
+                        </configuration>
+                    </plugin>-->
+                </plugins>
+            </build>
+            <!-- 【注】snapshotRepository 与 repository 中的 id 一定要与 setting.xml 中 server 的 id 保持一致！ -->
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>ossrh</id>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+                </snapshotRepository>
+                <repository>
+                    <id>ossrh</id>
+                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+                </repository>
+            </distributionManagement>
+        </profile>
+    </profiles>
+
 </project>
