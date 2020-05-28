@@ -49,6 +49,7 @@ public class SerializablePoolExecutor {
 
     /**
      * 非阻塞的获取队列中所有元素
+     * @return 剩余任务
      */
     public List<Runnable> peekQueueTask() {
         List<Runnable> runnableList = new ArrayList<>(workQueue.size());

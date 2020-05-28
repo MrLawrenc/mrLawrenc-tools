@@ -65,6 +65,10 @@ public class FilterChain implements InitializingBean {
      * 内部调用执行所有的过滤器
      * 使用者可以在firstFilter更改整个过滤器链，详见{@link FilterChain#reloadFilters(List)}方法
      *
+     * @param method      源方法
+     * @param methodProxy 代理方法
+     * @param objects     方法参数
+     * @param proxyObj    代理对象
      * @return 响应
      * @throws Throwable 异常
      */
@@ -187,6 +191,7 @@ public class FilterChain implements InitializingBean {
      * 重新装配filter,不会修改原有的first和last类型的过滤器。
      *
      * @param filterList 新的过滤器链
+     * @return this
      */
     public FilterChain reloadFilters(List<Filter> filterList) {
         FilterChain filterChain = JSON.parseObject(JSON.toJSONString(this), FilterChain.class);

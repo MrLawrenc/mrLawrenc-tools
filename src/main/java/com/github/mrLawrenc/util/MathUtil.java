@@ -13,6 +13,12 @@ import java.math.RoundingMode;
 public final class MathUtil {
     /**
      * 计算两点距离
+     *
+     * @param x  x
+     * @param y  y
+     * @param x1 x1
+     * @param y1 y1
+     * @return 距离
      */
     public static double calculateDistance(int x, int y, int x1, int y1) {
         double y2 = (y1 - y) * (y1 - y);
@@ -39,6 +45,10 @@ public final class MathUtil {
 
     /**
      * decimal求平方根
+     *
+     * @param value 源
+     * @param scale 精度
+     * @return 结果
      */
     public static BigDecimal sqrt(BigDecimal value, int scale) {
         BigDecimal num2 = BigDecimal.valueOf(2);
@@ -54,10 +64,6 @@ public final class MathUtil {
         return deviation;
     }
 
-    /**
-     * 使用必须自己先校验入参。
-     * 查找算法，主要用于定位location接口，区间为: [  )
-     */
     public static int binarySearchNearbyIndex(int[] a, int key) {
         int low, mid, high;
         low = 0;

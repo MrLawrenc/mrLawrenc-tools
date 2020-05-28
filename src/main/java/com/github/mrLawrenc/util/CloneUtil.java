@@ -7,7 +7,8 @@ import java.util.List;
 
 /**
  * 拷贝工具类
- * @author   MrLawrenc
+ *
+ * @author MrLawrenc
  * date  2020/5/27 23:48
  */
 @SuppressWarnings("all")
@@ -15,6 +16,11 @@ public class CloneUtil {
 
     /**
      * json序列化方式深拷贝
+     *
+     * @param <T>    目标对象类型
+     * @param clz    目标对象类型
+     * @param source 源对象
+     * @return 拷贝之后的对象
      */
     public static <T> T deepCopyObj(Object source, Class<T> clz) {
         return JSON.parseObject(JSON.toJSONString(source), clz);
@@ -27,9 +33,12 @@ public class CloneUtil {
     /**
      * 基于jdk序列化方式的深克隆
      *
+     * @param <L>    源类型
      * @param source 被复制拷贝的源对象
+     * @return 拷贝之后的对象
+     * @throws Exception 序列化错误
      */
-    public static <L> L deepCopyBySerialized(L source) throws IOException, ClassNotFoundException {
+    public static <L> L deepCopyBySerialized(L source) throws Exception{
         if (!(source instanceof Serializable)) {
             throw new RuntimeException("Not Impl Serialized Interface");
         }

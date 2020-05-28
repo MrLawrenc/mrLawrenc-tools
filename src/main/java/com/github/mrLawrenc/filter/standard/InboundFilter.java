@@ -28,6 +28,7 @@ public abstract class InboundFilter implements Filter {
      *
      * @param request 请求
      * @param chain   过滤器链
+     * @return 过滤器链
      */
     public abstract FilterChain doInboundFilter(Request request, FilterChain chain);
 }

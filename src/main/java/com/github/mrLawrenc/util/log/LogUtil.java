@@ -18,9 +18,6 @@ public final class LogUtil {
         return LoggerFactory.getLogger(clzName);
     }
 
-    /**
-     * info日志
-     */
     public static void info(String str, Object... messages) {
         getLogger(getClzName()).info(str, messages);
     }
@@ -29,9 +26,6 @@ public final class LogUtil {
         getLogger(getClzName()).info(str);
     }
 
-    /**
-     * debug日志
-     */
     public static void debug(String str, Object... messages) {
         Logger logger = getLogger(getClzName());
         if (logger.isDebugEnabled()) {
@@ -47,9 +41,6 @@ public final class LogUtil {
     }
 
 
-    /**
-     * error日志
-     */
     public static void error(String str, Object... messages) {
         Logger logger = getLogger(getClzName());
         if (logger.isErrorEnabled()) {
@@ -74,10 +65,6 @@ public final class LogUtil {
         }
     }
 
-
-    /**
-     * warn日志
-     */
     public static void warn(String str, Object... messages) {
         Logger logger = getLogger(getClzName());
         if (logger.isWarnEnabled()) {
@@ -91,10 +78,6 @@ public final class LogUtil {
             logger.warn(str);
         }
     }
-
-    /**
-     * 获取调用该方法所处在的类名
-     */
     private static String getClzName() {
         StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
         return stackTrace.length < 3 ? "  非本地类   " : stackTrace[3].getClassName();
