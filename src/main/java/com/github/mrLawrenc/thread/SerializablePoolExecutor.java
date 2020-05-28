@@ -220,7 +220,6 @@ public class SerializablePoolExecutor {
         /**
          * 预留扩展
          */
-
         protected void afterExecute(Runnable r, Throwable t) {
             super.afterExecute(r, t);
         }
