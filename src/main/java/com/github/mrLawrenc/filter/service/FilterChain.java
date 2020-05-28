@@ -184,7 +184,6 @@ public class FilterChain implements InitializingBean {
      * 允许用户在特殊条件更改本次执行的过滤器链，更改只会在本次请求生效，如果想要复用，就不能调用{@link FilterChain#clearChain()}方法，
      * 并且需要保存当前FilterChain副本，以便下次在进入{@link FirstFilter#doFilter(Request, Response, FilterChain)}方法时更改当前的filterChain
      * <p>
-     * <p>
      * 重新装配filter,不会修改原有的first和last类型的过滤器。
      *
      * @param filterList 新的过滤器链

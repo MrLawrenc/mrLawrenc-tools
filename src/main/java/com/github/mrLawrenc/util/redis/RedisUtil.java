@@ -33,22 +33,21 @@ public class RedisUtil {
      * -------------------key相关操作---------------------
      */
 
-    //删除key
     public void delete(String key) {
         redisTemplate.delete(key);
     }
 
-    //批量删除key
     public void delete(Collection<String> keys) {
         redisTemplate.delete(keys);
     }
 
-    //序列化key
+    /**
+     * 序列化key
+     */
     public byte[] dump(String key) {
         return redisTemplate.dump(key);
     }
 
-    //是否存在key
     public Boolean hasKey(String key) {
         return redisTemplate.hasKey(key);
     }

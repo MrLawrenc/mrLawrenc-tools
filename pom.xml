@@ -52,6 +52,12 @@
 
 
     <dependencies>
+        <!--xstream序列化框架-->
+        <dependency>
+            <groupId>com.thoughtworks.xstream</groupId>
+            <artifactId>xstream</artifactId>
+            <version>1.4.11.1</version>
+        </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
@@ -69,16 +75,18 @@
             <version>1.18.12</version>
             <optional>true</optional>
         </dependency>
-        <!-- 所有 starter 的基本配置 -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-        </dependency>
+
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-redis</artifactId>
             <version>2.1.9.RELEASE</version>
         </dependency>
+        <!-- 所有 starter 的基本配置 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
     </dependencies>
 
     <!-- 使用个人资料：由于生成javadoc和源jar以及使用GPG签署组件是一个相当耗时的过程，因此这些执行通常与正常的构建配置隔离并移动到配置文件中。然后，在通过激活配置文件执行部署时，将使用此配置文件。 -->
