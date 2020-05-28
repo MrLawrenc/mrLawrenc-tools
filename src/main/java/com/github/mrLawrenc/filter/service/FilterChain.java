@@ -29,11 +29,11 @@ import java.util.concurrent.CompletableFuture;
 import static java.util.stream.Collectors.toList;
 
 /**
- * @author : MrLawrenc
- * @date : 2020/5/13 22:37
- * @description : 过滤器链
- * <p>
- * first和last filter是一定会被执行的
+ * @author hz20035009-逍遥
+ * date   2020/5/27 18:04
+ * 过滤器链
+ * * <p>
+ * * first和last filter是一定会被执行的
  */
 @Slf4j
 public class FilterChain implements InitializingBean {
@@ -132,7 +132,7 @@ public class FilterChain implements InitializingBean {
      */
     @Override
     public void afterPropertiesSet() throws Exception {
-        String basePkg = config.getBasePkg().strip();
+        String basePkg = config.getBasePkg().trim();
         beanFilters = new ArrayList<>(context.getBeansOfType(Filter.class).values());
 
         if (!StringUtils.isEmpty(basePkg)) {

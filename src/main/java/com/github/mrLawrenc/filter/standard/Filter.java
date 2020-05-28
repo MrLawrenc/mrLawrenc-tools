@@ -7,9 +7,9 @@ import com.github.mrLawrenc.filter.entity.Request;
 import com.github.mrLawrenc.filter.entity.Response;
 
 /**
- * @author : MrLawrenc
- * @date : 2020/5/13 22:35
- * @description : 过滤器抽象接口
+ * @author hz20035009-逍遥
+ * date   2020/5/27 18:04
+ * 过滤器抽象接口
  */
 public interface Filter {
     /**

@@ -7,11 +7,11 @@ import com.github.mrLawrenc.filter.entity.Response;
 import com.github.mrLawrenc.filter.standard.InnerFilter;
 
 /**
- * @author : hz20035009-逍遥
- * @date : 2020/5/14 9:42
- * @description : 对于入站来说是第一个filter，对于出站则是最后一个filter
- * <p>
- * 留给子类扩展，默认空实现
+ * @author hz20035009-逍遥
+ * date   2020/5/27 18:04
+ * 对于入站来说是第一个filter，对于出站则是最后一个filter
+ *  * <p>
+ *  * 留给子类扩展，默认空实现
  */
 public class FirstFilter extends InnerFilter {
     @Override

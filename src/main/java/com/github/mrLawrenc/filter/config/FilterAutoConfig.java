@@ -9,9 +9,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @author : hz20035009-逍遥
- * @date : 2020/5/19 15:21
- * @description : TODO
+ * @author hz20035009-逍遥
+ * date   2020/5/27 18:02
  */
 @Configuration
 @ConditionalOnClass({FilterChain.class, FirstFilter.class, LastFilter.class})

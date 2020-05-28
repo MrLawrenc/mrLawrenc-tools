@@ -17,17 +17,18 @@ import java.lang.reflect.Method;
 import java.util.Random;
 
 /**
- * @author : hz20035009-逍遥
- * @date : 2020/5/14 9:45
- * @description : 为所有{@link Invoker}的实现类生成代理对象，代理对象主要执行过滤器相关逻辑
+ * @author hz20035009-逍遥
+ * date   2020/5/27 18:03
  * <p>
- * InstantiationAwareBeanPostProcessor代表了Spring的另外一段生命周期：实例化。先区别一下Spring Bean的实例化和初始化两个阶段的主要作用：
- * <p>
- * 1、实例化----实例化的过程是一个创建Bean的过程，即调用Bean的构造函数，单例的Bean放入单例池中
- * <p>
- * 2、初始化----初始化的过程是一个赋值的过程，即调用Bean的setter，设置Bean的属性
- * <p>
- * BeanPostProcessor作用于过程（2）前后，现在的InstantiationAwareBeanPostProcessor则作用于过程（1）前后；
+ * 为所有{@link Invoker}的实现类生成代理对象，代理对象主要执行过滤器相关逻辑
+ * * <p>
+ * * InstantiationAwareBeanPostProcessor代表了Spring的另外一段生命周期：实例化。先区别一下Spring Bean的实例化和初始化两个阶段的主要作用：
+ * * <p>
+ * * 1、实例化----实例化的过程是一个创建Bean的过程，即调用Bean的构造函数，单例的Bean放入单例池中
+ * * <p>
+ * * 2、初始化----初始化的过程是一个赋值的过程，即调用Bean的setter，设置Bean的属性
+ * * <p>
+ * * BeanPostProcessor作用于过程（2）前后，现在的InstantiationAwareBeanPostProcessor则作用于过程（1）前后；
  */
 @AllArgsConstructor
 public class InjectProxyBeanProcessor implements InstantiationAwareBeanPostProcessor {

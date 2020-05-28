@@ -5,9 +5,9 @@ import com.github.mrLawrenc.filter.entity.Request;
 import com.github.mrLawrenc.filter.entity.Response;
 
 /**
- * @author : MrLawrenc
- * @date : 2020/5/13 22:43
- * @description :   业务逻辑接口
+ * @author hz20035009-逍遥
+ * date   2020/5/27 18:05
+ * 业务逻辑接口
  */
 public interface Invoker {
 

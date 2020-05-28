@@ -3,9 +3,9 @@ package com.github.mrLawrenc.filter.entity;
 import lombok.Data;
 
 /**
- * @author : MrLawrenc
- * @date : 2020/5/13 22:36
- * @description : 请求对象
+ * @author hz20035009-逍遥
+ * date   2020/5/27 18:03
+ * 请求对象
  */
 @Data
 public class Request {
