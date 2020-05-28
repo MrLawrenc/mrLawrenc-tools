@@ -14,7 +14,7 @@ import org.springframework.cglib.proxy.MethodInterceptor;
 import org.springframework.cglib.proxy.MethodProxy;
 
 import java.lang.reflect.Method;
-import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author hz20035009-逍遥
@@ -32,7 +32,7 @@ import java.util.Random;
  */
 @AllArgsConstructor
 public class InjectProxyBeanProcessor implements InstantiationAwareBeanPostProcessor {
-
+    private static final AtomicInteger COUNT = new AtomicInteger();
     private final FilterChain filterChain;
 
     @SneakyThrows
@@ -63,7 +63,7 @@ public class InjectProxyBeanProcessor implements InstantiationAwareBeanPostProce
         enhancer.setNamingPolicy(new NamingPolicy() {
             @Override
             public String getClassName(String s, String s1, Object o, Predicate predicate) {
-                return "Proxy$" + invoker.getSimpleName() + new Random().nextInt(100);
+                return "Proxy$" + invoker.getSimpleName() + COUNT.getAndIncrement();
             }
         });
         enhancer.setCallback(new MethodInterceptor() {
