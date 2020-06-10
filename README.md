@@ -2,7 +2,7 @@
 
 ## 可以打为boot-starter包引入
         <dependency>
-            <groupId>com.github.mrLawrenc</groupId>
+            <groupId>com.github.mrlawrenc</groupId>
             <artifactId>mrLawrenc-tool-spring-boot-starter</artifactId>
             <version>1.0.0-RELEASE</version>
         </dependency>
