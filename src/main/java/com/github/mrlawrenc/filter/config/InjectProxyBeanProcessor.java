@@ -30,7 +30,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * * <p>
  * * BeanPostProcessor作用于过程（2）前后，现在的InstantiationAwareBeanPostProcessor则作用于过程（1）前后；
  */
-@AllArgsConstructor
+@AllArgsConstructor@Deprecated
 public class InjectProxyBeanProcessor implements InstantiationAwareBeanPostProcessor {
     private static final AtomicInteger COUNT = new AtomicInteger();
     private final FilterChain filterChain;

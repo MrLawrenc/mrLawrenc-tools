@@ -57,8 +57,8 @@ public class FilterChain implements InitializingBean {
     private List<Filter> beanFilters;
 
 
-    private List<FirstFilter> firstFilters;
-    private List<LastFilter> lastFilters;
+    private List<com.github.mrlawrenc.filter.service.FirstFilter> firstFilters;
+    private List<com.github.mrlawrenc.filter.service.LastFilter> lastFilters;
 
 
     /**
@@ -76,7 +76,7 @@ public class FilterChain implements InitializingBean {
         Request request = (Request) objects[0];
 
         FilterChain chain = this;
-        for (FirstFilter firstFilter : firstFilters) {
+        for (com.github.mrlawrenc.filter.service.FirstFilter firstFilter : firstFilters) {
             chain = firstFilter.doFilter(request, null, chain);
         }
         inbound(0, request, chain);
@@ -84,7 +84,9 @@ public class FilterChain implements InitializingBean {
         lastFilters.forEach(lastFilter -> lastFilter.doFilter(request, null, finalChain));
 
 
-        Response response = (Response) methodProxy.invokeSuper(proxyObj, objects);
+        //Response response = (Response) methodProxy.invokeSuper(proxyObj, objects);
+        //此时 proxyObj为原始对象，才能使用自动注入的字段
+        Response response = (Response) method.invoke(proxyObj, objects);
 
 
         lastFilters.forEach(lastFilter -> lastFilter.doFilter(request, null, finalChain));
@@ -157,10 +159,10 @@ public class FilterChain implements InitializingBean {
             log.info("add bean : {}", newBeanFilter);
         }
 
-        firstFilters = beanFilters.stream().filter(f -> f instanceof FirstFilter)
-                .map(f -> (FirstFilter) f).collect(toList());
-        lastFilters = beanFilters.stream().filter(f -> f instanceof LastFilter)
-                .map(f -> (LastFilter) f).collect(toList());
+        firstFilters = beanFilters.stream().filter(f -> f instanceof com.github.mrlawrenc.filter.service.FirstFilter)
+                .map(f -> (com.github.mrlawrenc.filter.service.FirstFilter) f).collect(toList());
+        lastFilters = beanFilters.stream().filter(f -> f instanceof com.github.mrlawrenc.filter.service.LastFilter)
+                .map(f -> (com.github.mrlawrenc.filter.service.LastFilter) f).collect(toList());
         beanFilters.removeAll(firstFilters);
         beanFilters.removeAll(lastFilters);
 

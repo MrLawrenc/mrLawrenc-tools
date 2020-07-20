@@ -1,5 +1,6 @@
 package com.github.mrlawrenc.filter.config;
 
+import com.github.mrLawrenc.filter.config.InjectProxyBeanProcessor0;
 import com.github.mrlawrenc.filter.service.FilterChain;
 import com.github.mrlawrenc.filter.service.FirstFilter;
 import com.github.mrlawrenc.filter.service.LastFilter;
@@ -33,7 +34,7 @@ public class FilterAutoConfig {
     }
 
     @Bean
-    public InjectProxyBeanProcessor injectProxyBeanProcessor(FilterChain filterChain) {
-        return new InjectProxyBeanProcessor(filterChain);
+    public InjectProxyBeanProcessor0 injectProxyBeanProcessor(FilterChain filterChain) {
+        return new InjectProxyBeanProcessor0(filterChain);
     }
 }
