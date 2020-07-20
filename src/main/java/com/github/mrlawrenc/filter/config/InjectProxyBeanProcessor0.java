@@ -1,4 +1,4 @@
-package com.github.mrLawrenc.filter.config;
+package com.github.mrlawrenc.filter.config;
 
 
 import com.github.mrlawrenc.filter.service.FilterChain;

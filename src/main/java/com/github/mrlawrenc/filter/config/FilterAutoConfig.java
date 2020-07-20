@@ -1,6 +1,5 @@
 package com.github.mrlawrenc.filter.config;
 
-import com.github.mrLawrenc.filter.config.InjectProxyBeanProcessor0;
 import com.github.mrlawrenc.filter.service.FilterChain;
 import com.github.mrlawrenc.filter.service.FirstFilter;
 import com.github.mrlawrenc.filter.service.LastFilter;
