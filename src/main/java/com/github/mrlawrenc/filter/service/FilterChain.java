@@ -76,7 +76,7 @@ public class FilterChain implements InitializingBean {
         Request request = (Request) objects[0];
 
         FilterChain chain = this;
-        for (com.github.mrlawrenc.filter.service.FirstFilter firstFilter : firstFilters) {
+        for (FirstFilter firstFilter : firstFilters) {
             chain = firstFilter.doFilter(request, null, chain);
         }
         inbound(0, request, chain);
@@ -159,10 +159,8 @@ public class FilterChain implements InitializingBean {
             log.info("add bean : {}", newBeanFilter);
         }
 
-        firstFilters = beanFilters.stream().filter(f -> f instanceof com.github.mrlawrenc.filter.service.FirstFilter)
-                .map(f -> (com.github.mrlawrenc.filter.service.FirstFilter) f).collect(toList());
-        lastFilters = beanFilters.stream().filter(f -> f instanceof com.github.mrlawrenc.filter.service.LastFilter)
-                .map(f -> (com.github.mrlawrenc.filter.service.LastFilter) f).collect(toList());
+        firstFilters = beanFilters.stream().filter(f -> f instanceof FirstFilter).map(f -> (FirstFilter) f).collect(toList());
+        lastFilters = beanFilters.stream().filter(f -> f instanceof LastFilter).map(f -> (LastFilter) f).collect(toList());
         beanFilters.removeAll(firstFilters);
         beanFilters.removeAll(lastFilters);
 

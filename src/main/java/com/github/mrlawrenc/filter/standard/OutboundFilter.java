@@ -12,7 +12,7 @@ import com.github.mrlawrenc.filter.entity.Response;
  */
 public abstract class OutboundFilter implements Filter {
     @Override
-    public FilterChain doFilter(Request request, Response response, FilterChain chain) {
+    public final FilterChain doFilter(Request request, Response response, FilterChain chain) {
         return doOutboundFilter(response, chain);
     }
 

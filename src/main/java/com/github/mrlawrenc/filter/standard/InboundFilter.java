@@ -19,7 +19,7 @@ public abstract class InboundFilter implements Filter {
      * @param chain    过滤器链
      */
     @Override
-    public FilterChain doFilter(Request request, Response response, FilterChain chain) {
+    public final FilterChain doFilter(Request request, Response response, FilterChain chain) {
         return doInboundFilter(request, chain);
     }
 

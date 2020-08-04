@@ -16,7 +16,7 @@ import com.github.mrlawrenc.filter.standard.InnerFilter;
 public class LastFilter extends InnerFilter {
     @Override
     public void init(Config filterConfig) {
-        System.out.println("last init.......");
+        //todo
     }
 
     @Override
@@ -27,6 +27,6 @@ public class LastFilter extends InnerFilter {
 
     @Override
     public void destroy() {
-
+        //todo
     }
 }
