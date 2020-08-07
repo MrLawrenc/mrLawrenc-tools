@@ -11,7 +11,7 @@ import com.github.mrlawrenc.filter.entity.Response;
  * date   2020/5/27 18:04
  * 过滤器抽象接口
  */
-public interface Filter {
+public interface Filter<T extends Request,R extends Response> {
     /**
      * 初始化方法，整个生命周期中只会被调用一次
      *
@@ -27,7 +27,7 @@ public interface Filter {
      * @param response 响应数据
      * @param chain    过滤器链
      */
-    FilterChain doFilter(Request request, Response response, FilterChain chain);
+    FilterChain doFilter(T request, R response, FilterChain chain);
 
     /**
      * 销毁方法，当移出被调用。整个生命周期中destroy方法只会执行一次

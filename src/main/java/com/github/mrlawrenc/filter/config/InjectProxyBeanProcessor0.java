@@ -42,7 +42,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * 详见如下使用方法
  * <p>
  * <p>
- * <a herf="https://www.cnblogs.com/hujunzheng/p/10463798.html">更多 创建动态代理Bean </a>
+ * 更多 创建动态代理Bean : https://www.cnblogs.com/hujunzheng/p/10463798.html
  */
 @AllArgsConstructor
 public class InjectProxyBeanProcessor0 implements BeanPostProcessor {

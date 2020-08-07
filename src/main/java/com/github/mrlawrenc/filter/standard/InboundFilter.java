@@ -10,7 +10,7 @@ import com.github.mrlawrenc.filter.entity.Response;
  * date   2020/5/27 18:05
  * 入站过滤器
  */
-public abstract class InboundFilter implements Filter {
+public abstract class InboundFilter<T extends Request, R extends Response> implements Filter<T, R> {
     /**
      * 尽量不要复写该方法，可以使用{@link InboundFilter#doInboundFilter(Request, FilterChain)}
      *
@@ -19,7 +19,7 @@ public abstract class InboundFilter implements Filter {
      * @param chain    过滤器链
      */
     @Override
-    public final FilterChain doFilter(Request request, Response response, FilterChain chain) {
+    public final FilterChain doFilter(T request, R response, FilterChain chain) {
         return doInboundFilter(request, chain);
     }
 
@@ -30,5 +30,5 @@ public abstract class InboundFilter implements Filter {
      * @param chain   过滤器链
      * @return 过滤器链
      */
-    public abstract FilterChain doInboundFilter(Request request, FilterChain chain);
+    public abstract FilterChain doInboundFilter(T request, FilterChain chain);
 }

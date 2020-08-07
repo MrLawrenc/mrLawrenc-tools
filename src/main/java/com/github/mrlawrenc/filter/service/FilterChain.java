@@ -96,6 +96,14 @@ public class FilterChain implements InitializingBean {
         return response;
     }
 
+    /**
+     * 从当前过滤器直接跳到业务逻辑
+     *
+     * @return 新的构建的过滤器链
+     */
+    public FilterChain skipService() {
+        return null;
+    }
 
     /**
      * 依次执行所有入站处理器
