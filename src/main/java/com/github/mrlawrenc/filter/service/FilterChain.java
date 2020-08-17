@@ -21,9 +21,7 @@ import org.springframework.util.StringUtils;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.CompletableFuture;
 
 import static java.util.stream.Collectors.toList;
@@ -57,8 +55,8 @@ public class FilterChain implements InitializingBean {
     private List<Filter> beanFilters;
 
 
-    private List<com.github.mrlawrenc.filter.service.FirstFilter> firstFilters;
-    private List<com.github.mrlawrenc.filter.service.LastFilter> lastFilters;
+    private List<FirstFilter> firstFilters;
+    private List<LastFilter> lastFilters;
 
 
     /**
@@ -97,12 +95,31 @@ public class FilterChain implements InitializingBean {
     }
 
     /**
-     * 从当前过滤器直接跳到业务逻辑
+     * 移除所有入栈filter，进而直接到达业务处理Invoker
      *
      * @return 新的构建的过滤器链
      */
-    public FilterChain skipService() {
-        return null;
+    public FilterChain skip2Service() {
+        FilterChain filterChain = copy();
+        filterChain.beanFilters = filterChain.beanFilters.stream().filter(f -> f instanceof InboundFilter).collect(toList());
+        return filterChain;
+    }
+
+    /**
+     * 返回一个chain副本
+     */
+    public FilterChain copy() {
+        FilterChain filterChain = new FilterChain();
+        filterChain.beanFilters=new ArrayList<>(this.beanFilters.size());
+        filterChain.firstFilters=new ArrayList<>(this.firstFilters.size());
+        filterChain.lastFilters=new ArrayList<>(this.lastFilters.size());
+        filterChain.allFilter=new ArrayList<>(this.allFilter.size());
+
+        Collections.copy(filterChain.beanFilters, this.beanFilters);
+        Collections.copy(filterChain.firstFilters, this.firstFilters);
+        Collections.copy(filterChain.lastFilters, this.lastFilters);
+        Collections.copy(filterChain.allFilter, this.allFilter);
+        return filterChain;
     }
 
     /**
@@ -113,13 +130,14 @@ public class FilterChain implements InitializingBean {
      * @param chain   过滤器链
      */
     private void inbound(int current, Request request, FilterChain chain) {
-        if (current < allFilter.size()) {
-            Filter filter = allFilter.get(current++);
+        if (current < beanFilters.size()) {
+            Filter filter = beanFilters.get(current++);
             if (filter instanceof InboundFilter) {
                 InboundFilter inboundFilter = (InboundFilter) filter;
                 chain = inboundFilter.doInboundFilter(request, chain);
+
             }
-            this.inbound(current, request, chain);
+            chain.inbound(current, request, chain);
         }
     }
 
@@ -132,12 +150,12 @@ public class FilterChain implements InitializingBean {
      */
     private void outbound(int current, Response response, FilterChain chain) {
         if (current >= 0) {
-            Filter filter = allFilter.get(current--);
+            Filter filter = beanFilters.get(current--);
             if (filter instanceof OutboundFilter) {
                 OutboundFilter outboundFilter = (OutboundFilter) filter;
                 chain = outboundFilter.doOutboundFilter(response, chain);
             }
-            this.outbound(current, response, chain);
+            chain.outbound(current, response, chain);
         }
     }
 
