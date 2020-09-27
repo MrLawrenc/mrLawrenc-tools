@@ -2,7 +2,7 @@ package com.github.mrlawrenc.cache.serializable.impl;
 
 
 import com.github.mrlawrenc.cache.serializable.SerializableCache;
-import com.github.mrlawrenc.util.serializable.SerializableUtil;
+import com.github.mrlawrenc.utils.serializable.SerializableUtil;
 import com.github.mrlawrenc.thread.SerializableRunnable;
 import lombok.Setter;
 import lombok.experimental.Accessors;

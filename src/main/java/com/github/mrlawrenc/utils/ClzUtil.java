@@ -1,4 +1,4 @@
-package com.github.mrlawrenc.util;
+package com.github.mrlawrenc.utils;
 
 import javax.tools.JavaCompiler;
 import javax.tools.ToolProvider;

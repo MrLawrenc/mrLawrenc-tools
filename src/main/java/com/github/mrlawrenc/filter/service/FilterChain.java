@@ -150,7 +150,7 @@ public class FilterChain implements InitializingBean {
      */
     private void outbound(int current, Response response, FilterChain chain) {
         if (current >= 0) {
-            Filter filter = beanFilters.get(current--);
+            Filter filter = allFilter.get(current--);
             if (filter instanceof OutboundFilter) {
                 OutboundFilter outboundFilter = (OutboundFilter) filter;
                 chain = outboundFilter.doOutboundFilter(response, chain);

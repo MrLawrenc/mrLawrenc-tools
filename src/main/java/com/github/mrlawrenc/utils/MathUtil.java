@@ -1,4 +1,4 @@
-package com.github.mrlawrenc.util;
+package com.github.mrlawrenc.utils;
 
 import java.math.BigDecimal;
 import java.math.MathContext;

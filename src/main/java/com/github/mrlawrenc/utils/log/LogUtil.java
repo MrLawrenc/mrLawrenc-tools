@@ -1,4 +1,4 @@
-package com.github.mrlawrenc.util.log;
+package com.github.mrlawrenc.utils.log;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

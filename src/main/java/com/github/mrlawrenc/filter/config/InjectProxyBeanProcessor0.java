@@ -55,8 +55,7 @@ public class InjectProxyBeanProcessor0 implements BeanPostProcessor {
         if (Invoker.class.isAssignableFrom(bean.getClass())) {
             return proxyInvoker(bean);
         }
-        //返回null会执行后续的BeanPostProcessor,只要有任意一个BeanPostProcessor的返回不为null就会停止执行后续的BeanPostProcessor
-        return null;
+        return bean;
     }
 
     @Override
