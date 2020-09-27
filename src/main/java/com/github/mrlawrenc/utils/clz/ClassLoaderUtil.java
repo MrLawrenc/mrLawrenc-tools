@@ -31,12 +31,14 @@ public class ClassLoaderUtil extends ClassLoader {
     private final Map<String, Class<?>> loaded = new HashMap<>();
 
 
+    /**
+     * 推荐复写{@link ClassLoader#findClass(String)}方法，当加载不到的时候会调用自身的findClass
+     */
     public Class<?> loadClass0(String classFullName, byte[] b) {
         Class<?> result = defineClass(classFullName, b, 0, b.length);
         loaded.put(classFullName, result);
         return result;
     }
-
 
     private void loadClass(File file) {
         if (file.isDirectory()) {
