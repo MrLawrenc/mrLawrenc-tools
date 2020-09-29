@@ -2,6 +2,8 @@ import com.github.mrlawrenc.utils.collections.SkipTable;
 import org.junit.Test;
 
 import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Supplier;
 
 /**
@@ -12,34 +14,50 @@ public class TestSkipTable {
 
     @Test
     public void t() {
-        SecureRandom secureRandom = new SecureRandom();
+        int num = 1000000;
         Supplier<Boolean> supplier = () -> new SecureRandom().nextDouble() < 0.5;
-        SkipTable skipTable = new SkipTable(true, supplier);
+        SkipTable skipTable = new SkipTable(false, supplier);
 
-        int a=0;
-        int b=0;
-        int c=0;
-
-        for (int i = 0; i < 10000; i++) {
-            int i1 =secureRandom.nextInt(100000) + i;
-            if (i==3000){
-                a=i1;
-            }
-            if (i==6000){
-                b=i1;
-            }
-            if (i==9501){
-                c=i1;
-            }
-            skipTable.insert(i1);
+        int a = 0;
+        int b = 0;
+        int c = 0;
+        List<Integer> list = new ArrayList<>();
+        long s0 = System.nanoTime();
+        for (int i = 0; i < num; i++) {
+            list.add(i);
         }
-        System.out.println("开始查找");
+        System.out.println("数组插入耗时:" + (System.nanoTime() - s0) + "ns");
+
+
+        long s1 = System.nanoTime();
+        for (int i = 0; i < num; i++) {
+            if (i == 3000) {
+                a = i;
+            }
+            if (i == 6000) {
+                b = i;
+            }
+            if (i == 9501) {
+                c = i;
+            }
+            skipTable.insert(i);
+        }
+        System.out.println("跳表插入耗时:" + (System.nanoTime() - s1) + "ns  跳表开始查找");
         long start = System.nanoTime();
         System.out.println(skipTable.findNearLeft(a));
-        System.out.println(System.nanoTime()-start+"ns");
+        long end1 = System.nanoTime();
+        System.out.println(end1 - start + "ns");
         System.out.println(skipTable.findNearLeft(b));
-        System.out.println(System.nanoTime()-start+"ns");
+        long end2 = System.nanoTime();
+        System.out.println(end2 - end1 + "ns");
         System.out.println(skipTable.findNearLeft(c));
-        System.out.println(System.nanoTime()-start+"ns");
+        System.out.println(System.nanoTime() - end2 + "ns");
+
+        long ss = System.nanoTime();
+     /*   int i = list.indexOf(a);
+        int i1 = list.indexOf(b);*/
+        int i2 = list.indexOf(c);
+
+        System.out.println("数组循环查找耗时:" + (System.nanoTime() - ss) + "ns");
     }
 }
