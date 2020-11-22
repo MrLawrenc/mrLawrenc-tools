@@ -1,7 +1,5 @@
 package com.github.mrlawrenc.filter.standard;
 
-import com.github.mrlawrenc.filter.entity.Request;
-import com.github.mrlawrenc.filter.entity.Response;
 
 /**
  * @author hz20035009-逍遥

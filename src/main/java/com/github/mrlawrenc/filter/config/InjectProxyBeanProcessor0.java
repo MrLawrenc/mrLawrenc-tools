@@ -20,6 +20,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * date   2020/5/27 18:03
  */
 @AllArgsConstructor
+@SuppressWarnings("all")
 public class InjectProxyBeanProcessor0 implements BeanPostProcessor {
     /*
      * {@link com.github.mrlawrenc.filter.config.InjectProxyBeanProcessor}该类由于作用于初始化之前，因此会出现原始bean未实例化，
@@ -91,7 +92,7 @@ public class InjectProxyBeanProcessor0 implements BeanPostProcessor {
                  * 修改为method.invoke(bean, args)解决无法注入@Autowired字段的问题。
                  */
                 //不使用代理对象，而使用源bean对象（包含注入的字段）
-                if (method.getName().equals("doInvoke")) {
+                if ("doInvoke".equals(method.getName())) {
                     return filterChain.doFilter(bean, method, objects, methodProxy);
                 } else {
                     return method.invoke(bean, objects);
