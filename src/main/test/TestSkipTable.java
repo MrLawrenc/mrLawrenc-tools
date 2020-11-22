@@ -1,3 +1,7 @@
+import com.github.mrlawrenc.filter.entity.Request;
+import com.github.mrlawrenc.filter.entity.Response;
+import com.github.mrlawrenc.filter.service.FilterChain;
+import com.github.mrlawrenc.filter.service.FirstFilter;
 import com.github.mrlawrenc.utils.collections.SkipTable;
 import org.junit.Test;
 
@@ -10,7 +14,7 @@ import java.util.function.Supplier;
  * @author hz20035009-逍遥
  * date   2020/9/29 15:47
  */
-public class TestSkipTable {
+public class TestSkipTable extends FirstFilter {
 
     @Test
     public void t() {

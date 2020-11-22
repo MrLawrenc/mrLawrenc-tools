@@ -107,13 +107,15 @@ public class FilterChain implements InitializingBean {
 
     /**
      * 返回一个chain副本
+     *
+     * @return chain
      */
     public FilterChain copy() {
         FilterChain filterChain = new FilterChain();
-        filterChain.beanFilters=new ArrayList<>(this.beanFilters.size());
-        filterChain.firstFilters=new ArrayList<>(this.firstFilters.size());
-        filterChain.lastFilters=new ArrayList<>(this.lastFilters.size());
-        filterChain.allFilter=new ArrayList<>(this.allFilter.size());
+        filterChain.beanFilters = new ArrayList<>(this.beanFilters.size());
+        filterChain.firstFilters = new ArrayList<>(this.firstFilters.size());
+        filterChain.lastFilters = new ArrayList<>(this.lastFilters.size());
+        filterChain.allFilter = new ArrayList<>(this.allFilter.size());
 
         Collections.copy(filterChain.beanFilters, this.beanFilters);
         Collections.copy(filterChain.firstFilters, this.firstFilters);

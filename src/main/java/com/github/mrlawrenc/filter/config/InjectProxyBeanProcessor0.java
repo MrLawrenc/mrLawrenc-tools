@@ -18,34 +18,36 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * @author hz20035009-逍遥
  * date   2020/5/27 18:03
- * {@link com.github.mrlawrenc.filter.config.InjectProxyBeanProcessor}该类由于作用于初始化之前，因此会出现原始bean未实例化，
- * 因此也就没有注入相关字段依赖。
- * <p>
- * 同时注意在使用cglib中，调用源方法时，使用methodProxy.invokeSuper(proxyObj, objects);在使用自动注入的字段时会报错空指针
- * <pre>
- *     Enhancer enhancer = new Enhancer();
- *     enhancer.setSuperclass(invoker.getClass());
- *     enhancer.setNamingPolicy(new NamingPolicy() {
- *         @Override
- *         public String getClassName(String s, String s1, Object o, Predicate predicate) {
- *             return "Proxy$" + invoker.getClass().getSimpleName() + COUNT.getAndIncrement();
- *         }
- *     });
- *     enhancer.setCallback(new MethodInterceptor() {
- *         @Override
- *         public Object intercept(Object proxyObj, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
- *             return methodProxy.invokeSuper(proxyObj, objects);
- *         }
- *     });
- *     enhancer.create();
- * </pre>
- * 详见如下使用方法
- * <p>
- * <p>
- * 更多 创建动态代理Bean : https://www.cnblogs.com/hujunzheng/p/10463798.html
  */
 @AllArgsConstructor
 public class InjectProxyBeanProcessor0 implements BeanPostProcessor {
+    /*
+     * {@link com.github.mrlawrenc.filter.config.InjectProxyBeanProcessor}该类由于作用于初始化之前，因此会出现原始bean未实例化，
+     * 因此也就没有注入相关字段依赖。
+     * 同时注意在使用cglib中，调用源方法时，使用methodProxy.invokeSuper(proxyObj, objects);在使用自动注入的字段时会报错空指针
+     * <code>
+     * <pre>
+     * {@code
+     *     Enhancer enhancer = new Enhancer();
+     *     enhancer.setSuperclass(invoker.getClass());
+     *     enhancer.setNamingPolicy(new NamingPolicy() {
+     *        @Override
+     *         public String getClassName(String s, String s1, Object o, Predicate predicate) {
+     *             return "Proxy$" + invoker.getClass().getSimpleName() + COUNT.getAndIncrement();
+     *         }
+     *     });
+     *     enhancer.setCallback(new MethodInterceptor() {
+     *         @Override
+     *         public Object intercept(Object proxyObj, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
+     *             return methodProxy.invokeSuper(proxyObj, objects);
+     *         }
+     *     });
+     *     enhancer.create();}
+     * </pre>
+     * </code>
+     * 详见如下使用方法
+     * 更多 创建动态代理Bean : https://www.cnblogs.com/hujunzheng/p/10463798.html
+     */
     private static final AtomicInteger COUNT = new AtomicInteger();
     private final FilterChain filterChain;
 

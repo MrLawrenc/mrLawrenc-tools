@@ -10,11 +10,11 @@ import com.github.mrlawrenc.filter.entity.Response;
  * date   2020/5/27 18:05
  * 出站过滤器
  */
-public abstract class OutboundFilter<T extends Request, R extends Response> implements Filter<T, R> {
+public abstract class OutboundFilter implements Filter {
     @Override
-    public final FilterChain doFilter(T request, R response, FilterChain chain) {
+    public final FilterChain doFilter(Request request, Response response, FilterChain chain) {
         return doOutboundFilter(response, chain);
     }
 
-    public abstract FilterChain doOutboundFilter(R response, FilterChain chain);
+    public abstract FilterChain doOutboundFilter(Response response, FilterChain chain);
 }

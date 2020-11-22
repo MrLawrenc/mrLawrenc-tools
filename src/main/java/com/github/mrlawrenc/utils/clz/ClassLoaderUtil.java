@@ -9,14 +9,14 @@ import java.util.Map;
 import java.util.regex.Matcher;
 
 /**
- * @author : MrLawrenc
- * date  2020/6/7 10:40
- * <p>
  * 两种方式打破双亲委派{@link ClassLoader#loadClass(String)}
  * <pre>
- *     1. 手动设置parent属性为null
- *     2. 改变loadclass内容，使 findLoadedClass(name);方法能获取到已经加载的类，详见ClassLoader line=570
+ *       1. 手动设置parent属性为null
+ *       2. 改变loadclass内容，使 findLoadedClass(name);方法能获取到已经加载的类，详见ClassLoader line=570
  * </pre>
+ *
+ * @author : MrLawrenc
+ * date  2020/6/7 10:40
  */
 @Slf4j
 public class ClassLoaderUtil extends ClassLoader {
@@ -31,10 +31,8 @@ public class ClassLoaderUtil extends ClassLoader {
     private final Map<String, Class<?>> loaded = new HashMap<>();
 
 
-    /**
-     * 推荐复写{@link ClassLoader#findClass(String)}方法，当加载不到的时候会调用自身的findClass
-     */
     public Class<?> loadClass0(String classFullName, byte[] b) {
+        //推荐复写{@link ClassLoader#findClass(String)}方法，当加载不到的时候会调用自身的findClass
         Class<?> result = defineClass(classFullName, b, 0, b.length);
         loaded.put(classFullName, result);
         return result;

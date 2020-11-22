@@ -29,6 +29,7 @@ public class SerializableUtil {
      * xml转java对象
      *
      * @param xml 序列化之后的xml
+     * @param <T> bean类型
      * @return 反序列化之后的bean
      */
     public static <T> T xmlToBean(String xml) {

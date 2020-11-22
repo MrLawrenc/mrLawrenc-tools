@@ -23,6 +23,7 @@ public class CompileUtil {
      * 这是一个标准编译方法.编译java文件,class输出到当前源文件所处目录
      *
      * @param file java源文件
+     * @throws Exception e
      */
     public void compileFile(File file) throws Exception {
         compileFileErrorOut2Writer(file, null);
@@ -33,6 +34,7 @@ public class CompileUtil {
      *
      * @param writer 编译错误输出位置，为null，则使用System.err输出
      * @param file   要编译的源文件 java源文件
+     * @throws Exception e
      * @see CompileUtil#compileFileOutMemory(Map, File)
      * @see CompileUtil#compileSourceCode2Memory(String, String, Map)
      */
@@ -57,7 +59,8 @@ public class CompileUtil {
     /**
      * 转化一个标准的JavaFileManager为可以将字节码输出到内存的JavaFileManager
      *
-     * @param bytes 字节码存储对象 key为全类名 value为字节码数组
+     * @param bytes       字节码存储对象 key为全类名 value为字节码数组
+     * @param fileManager f
      * @return ForwardingJavaFileManager对象
      */
     public ForwardingJavaFileManager<StandardJavaFileManager> out2MemoryJavaFileManager(StandardJavaFileManager fileManager, Map<String, byte[]> bytes) {
@@ -113,18 +116,17 @@ public class CompileUtil {
     /**
      * 将java源代码编译到内存中
      * 测试case如下:
-     * <pre>
-     *          String sourceCode = "package com;public class Test{\n" +
-     *                 "  @Override\n" +
+     * <blockquote>
+     * {@code  String sourceCode = "package com;public class Test{\n" +
+     *                  "  @Override\n" +
      *                 "  public String toString() {\n" +
-     *                 "    return \"hello java compiler\";\n" +
-     *                 "  }\n" +
-     *                 "}";
-     *
-     *         Map<String, byte[]> map = new HashMap<>();
-     *         compileUtil.compileSourceCode2Memory("Test", sourceCode, map);
-     *         map.keySet().forEach(System.out::println);
-     * </pre>
+     *                  "    return \"hello java compiler\";\n" +
+     *                  "  }\n" +
+     *                  "}";
+     *          Map<String, byte[]> map = new HashMap<>();
+     *          compileUtil.compileSourceCode2Memory("Test", sourceCode, map);
+     *          map.keySet().forEach(System.out::println);}
+     * </blockquote>
      *
      * @param className  类名
      * @param bytes      编辑之后的class数据存储在该map中，key为全限定名，value为class字节数组

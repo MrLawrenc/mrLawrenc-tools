@@ -7,7 +7,7 @@
     <!--deploy成功之后 访问https://oss.sonatype.org/#stagingRepositories 可以查看已上传的项目-->
     <groupId>com.github.mrLawrenc</groupId>
     <artifactId>mrLawrenc-tool-spring-boot-starter</artifactId>
-    <version>1.0.1-RELEASE</version>
+    <version>1.0.3-RELEASE</version>
 
     <url>https://github.com/mrlawrenc/OSSRH-57750</url>
 
@@ -110,13 +110,15 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>2.9.1</version>
+                        <version>3.1.1</version>
                         <configuration>
                             <encoding>UTF-8</encoding>
-                            <aggregate>true</aggregate>
+                           <!-- <aggregate>true</aggregate>-->
                             <charset>UTF-8</charset>
                             <docencoding>UTF-8</docencoding>
                             <failOnError>false</failOnError>
+                            <!-- 禁用java 8 的DocLint新特性，以确保当javadoc有编译错误时，也能正常生成javadoc jar包-->
+                           <!-- <additionalparam>-Xdoclint:none</additionalparam>-->
                         </configuration>
                         <executions>
                             <execution>

@@ -22,8 +22,6 @@ import java.util.List;
 /**
  * @author MrLawrenc
  * date  2020/8/4
- *
- *
  */
 @SpringBootApplication
 @EnableFilterAndInvoker

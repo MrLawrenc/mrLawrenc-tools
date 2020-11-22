@@ -9,9 +9,10 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.function.Supplier;
 
 /**
+ * 跳表，类似b+树，多叉树,大数据查找时可用来替换二叉树
+ *
  * @author : LiuMingyao
  * 2020/3/9 10:08
- * 跳表，类似b+树，多叉树,大数据查找时可用来替换二叉树
  */
 @SuppressWarnings("all")
 public class SkipTable {
@@ -229,6 +230,8 @@ public class SkipTable {
 
     /**
      * 第一层的数据即为数据总量
+     *
+     * @return 存储数据量
      */
     public int size() {
         return map.get(1) == null ? 0 : map.get(1);
