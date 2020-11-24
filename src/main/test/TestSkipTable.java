@@ -8,6 +8,7 @@ import org.junit.Test;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.locks.LockSupport;
 import java.util.function.Supplier;
 
 /**
@@ -61,6 +62,9 @@ public class TestSkipTable extends FirstFilter {
      /*   int i = list.indexOf(a);
         int i1 = list.indexOf(b);*/
         int i2 = list.indexOf(c);
+
+        LockSupport.park();
+        LockSupport.unpark(Thread.currentThread());
 
         System.out.println("数组循环查找耗时:" + (System.nanoTime() - ss) + "ns");
     }

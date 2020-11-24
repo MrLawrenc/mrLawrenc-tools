@@ -10,6 +10,7 @@ import java.math.RoundingMode;
  * @author MrLawrenc
  * date  2020/5/27 23:51
  */
+@SuppressWarnings("all")
 public final class MathUtil {
     /**
      * 计算两点距离
@@ -80,4 +81,21 @@ public final class MathUtil {
         }
         return high < 0 || high > a.length - 1 ? -1 : high;
     }
+
+    /**
+     * 寻找最接近index的2的幂次方数
+     *
+     * @param index 基准数
+     * @return 刚好大于index的一个数，该数是2的幂
+     */
+    public static int find(int index) {
+        int newCapacity = index;
+        newCapacity |= newCapacity >>> 1;
+        newCapacity |= newCapacity >>> 2;
+        newCapacity |= newCapacity >>> 4;
+        newCapacity |= newCapacity >>> 8;
+        newCapacity |= newCapacity >>> 16;
+        return ++newCapacity;
+    }
+
 }
