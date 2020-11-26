@@ -30,7 +30,7 @@ import java.util.regex.Matcher;
  *      7.如果需要编译java源码，且需要load，则使用{@link UrlLoader#loadJavaSource(String, String)}
  * </pre>
  *
- * @author hz20035009-逍遥
+ * @author : MrLawrenc
  * date   2020/11/23 14:21
  */
 @Slf4j
@@ -129,6 +129,8 @@ public class UrlLoader extends URLClassLoader {
 
     /**
      * 加载file下面的所有 .jar文件
+     *
+     * @param file 父目录
      */
     public void loadJar(File file) throws IOException {
         if (file.isDirectory()) {

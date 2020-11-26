@@ -12,10 +12,10 @@ import java.util.Iterator;
 import java.util.Map;
 
 /**
+ * 字节码编译工具
+ *
  * @author : MrLawrenc
  * date  2020/9/26 20:09
- * <p>
- * 字节码编译工具
  */
 @Slf4j
 public class CompileUtil {
@@ -115,20 +115,22 @@ public class CompileUtil {
      * 将java源代码编译到内存中
      * 测试case如下:
      * <pre>
-     *          String sourceCode = "package com;public class Test{\n" +
-     *                 "  @Override\n" +
-     *                 "  public String toString() {\n" +
-     *                 "    return \"hello java compiler\";\n" +
-     *                 "  }\n" +
-     *                 "}";
-     *
-     *         Map<String, byte[]> map = new HashMap<>();
-     *         compileUtil.compileSourceCode2Memory("Test", sourceCode, map);
-     *         map.keySet().forEach(System.out::println);
+     * {@code
+     *        String sourceCode = "package com;public class Test{\n" +
+     *                      "  @Override\n" +
+     *                      "  public String toString() {\n" +
+     *                      "    return \"hello java compiler\";\n" +
+     *                      "  }\n" +
+     *                      "}";
+     *        Map<String, byte[]> map = new HashMap<>();
+     *        compileUtil.compileSourceCode2Memory("Test", sourceCode, map);
+     *        map.keySet().forEach(System.out::println);
+     * }
      * </pre>
      *
      * @param className  类名
      * @param sourceCode java源代码
+     * @return 编译完成的class数据，key为全限定类名，value为class字节数组
      * @throws Exception 编译出错
      */
     public static Map<String, byte[]> compileSourceCode2Memory(String className, String sourceCode) throws Exception {
