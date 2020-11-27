@@ -1,6 +1,6 @@
-import com.github.mrlawrenc.utils.clz.ClassLoaderUtil;
 import com.github.mrlawrenc.utils.clz.CompileUtil;
 import org.junit.Test;
+import sun.misc.ClassLoaderUtil;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -43,8 +43,7 @@ public class TestCompile {
                 "  }\n" +
                 "}";
 
-        Map<String, byte[]> map = new HashMap<>();
-        compileUtil.compileSourceCode2Memory("Test", sourceCode, map);
+        Map<String, byte[]> map = compileUtil.compileSourceCode2Memory("Test", sourceCode);
 
         map.keySet().forEach(System.out::println);
     }
@@ -63,16 +62,15 @@ public class TestCompile {
                 "  }\n" +
                 "}";
 
-        Map<String, byte[]> map = new HashMap<>();
-        compileUtil.compileSourceCode2Memory("Test", sourceCode, map);
-        map.keySet().forEach(k -> {
+        Map<String, byte[]> map = compileUtil.compileSourceCode2Memory("Test", sourceCode);
+       /* map.keySet().forEach(k -> {
             Class<?> r = loaderUtil.loadClass0(k, map.get(k));
             try {
                 System.out.println(r.newInstance().toString());
             } catch (InstantiationException | IllegalAccessException e) {
                 e.printStackTrace();
             }
-        });
+        });*/
 
     }
 
